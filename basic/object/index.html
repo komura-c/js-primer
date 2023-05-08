@@ -6,7 +6,7 @@
         <title>オブジェクト · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/object/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,13 +1463,13 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="object"><a name="object" class="plugin-anchor" href="#object"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクト </h1>
+                                <html><head></head><body><h1 id="object"><a name="object" class="plugin-anchor" href="#object"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクト </h1>
 <p>オブジェクトはプロパティの集合です。プロパティとは名前（キー）と値（バリュー）が対になったものです。
 プロパティのキーには文字列または<code>Symbol</code>が利用でき、値には任意のデータを指定できます。
 また、1つのオブジェクトは複数のプロパティを持てるため、1つのオブジェクトで多種多様な値を表現できます。</p>
 <p>今までも登場してきた、配列や関数などもオブジェクトの一種です。
 JavaScriptには、あらゆるオブジェクトの元となる<code>Object</code>というビルトインオブジェクトがあります。
-ビルトインオブジェクトは実行環境に組み込まれたオブジェクトのことです。
+ビルトインオブジェクトは、実行環境にあらかじめ定義されているオブジェクトのことです。
 <code>Object</code>というビルトインオブジェクトはECMAScriptの仕様で定義されているため、あらゆるJavaScriptの実行環境で利用できます。</p>
 <!-- Note: ビルトインオブジェクト
 
@@ -1476,12 +1499,14 @@ JavaScriptには、あらゆるオブジェクトの元となる<code>Object</co
     <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span>
 };
 </code></pre>
-<p>ただし、変数の識別子として利用できないプロパティ名はクォート（<code>&quot;</code>や<code>&apos;</code>）で囲む必要があります。</p>
+<p>ただし、変数名として利用できないプロパティ名はクォート（<code>&quot;</code>や<code>&apos;</code>）で囲む必要があります。
+次の<code>my-prop</code>というプロパティ名は、変数名として利用できない<code>-</code>が含まれているため定義できません（「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の章の「<a href="../variables/#variable-name">変数名に使える名前のルール </a>」を参照）</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> object = {
     <span class="hljs-comment">// キー: 値</span>
     my-prop: <span class="hljs-string">&quot;value&quot;</span> <span class="hljs-comment">// NG</span>
 };
 </code></pre>
+<p><code>my-prop</code>というプロパティ名を定義する場合は、クォート（<code>&quot;</code>や<code>&apos;</code>）で囲む必要があります。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
     <span class="hljs-comment">// キー: 値</span>
     <span class="hljs-string">&quot;my-prop&quot;</span>: <span class="hljs-string">&quot;value&quot;</span> <span class="hljs-comment">// OK</span>
@@ -1547,7 +1572,7 @@ JavaScriptには、あらゆるオブジェクトの元となる<code>Object</co
 <span class="hljs-comment">// ブラケット記法で参照</span>
 <span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
-<p>ドット記法（<code>.</code>）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります（詳細は「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の章を参照）。</p>
+<p>ドット記法（<code>.</code>）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります（「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の章の「<a href="../variables/#variable-name">変数名に使える名前のルール </a>」を参照）。</p>
 <pre><code class="lang-javascript">obj.key; <span class="hljs-comment">// OK</span>
 <span class="hljs-comment">// プロパティ名が数字から始まる識別子は利用できない</span>
 obj<span class="hljs-number">.123</span>; <span class="hljs-comment">// NG</span>
@@ -1567,6 +1592,8 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
 <span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 <span class="hljs-comment">// プロパティ名が数字からはじまる識別子も利用できる</span>
 <span class="hljs-built_in">console</span>.log(obj[<span class="hljs-number">123</span>]); <span class="hljs-comment">// =&gt; 456</span>
+<span class="hljs-comment">// プロパティ名は暗黙的に文字列に変換されているため、次も同じプロパティを参照している</span>
+<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;123&quot;</span>]); <span class="hljs-comment">// =&gt; 456</span>
 <span class="hljs-comment">// プロパティ名にハイフンを含む識別子も利用できる</span>
 <span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;my-key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;my-value&quot;</span>
 </code></pre>
@@ -1583,7 +1610,7 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
 <p>ドット記法ではプロパティ名に変数は利用できないため、プロパティ名に変数を指定したい場合はブラケット記法を利用します。
 基本的には簡潔なドット記法（<code>.</code>）を使い、ドット記法で書けない場合はブラケット記法（<code>[]</code>）を使うとよいでしょう。</p>
 <h2 id="object-destructuring"><a name="object-destructuring" class="plugin-anchor" href="#object-destructuring"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] オブジェクトと分割代入 </h2>
-<p>同じオブジェクトのプロパティを何度もアクセスする場合に、何度も<code>オブジェクト.プロパティ名</code>と書くと冗長となりやすいです。
+<p>同じオブジェクトのプロパティに何度もアクセスする場合に、何度も<code>オブジェクト.プロパティ名</code>と書くと冗長となりやすいです。
 そのため、短い名前で利用できるように、そのプロパティを変数として定義し直すことがあります。</p>
 <p>次のコードでは、変数<code>ja</code>と<code>en</code>を定義し、その初期値として<code>languages</code>オブジェクトのプロパティを代入しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1596,7 +1623,7 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
 <span class="hljs-built_in">console</span>.log(ja); <span class="hljs-comment">// =&gt; &quot;日本語&quot;</span>
 <span class="hljs-built_in">console</span>.log(en); <span class="hljs-comment">// =&gt; &quot;英語&quot;</span>
 </code></pre>
-<p>このようなオブジェクトのプロパティを変数として定義し直すときには、分割代入（Destructuring assignment）が利用できます。</p>
+<p>このようにオブジェクトのプロパティを変数として定義し直すときには、分割代入（Destructuring assignment）が利用できます。</p>
 <p>オブジェクトの分割代入では、左辺にオブジェクトリテラルのような構文で変数名を定義します。
 右辺のオブジェクトから対応するプロパティ名が、左辺で定義した変数に代入されます。</p>
 <p>次のコードでは、先ほどのコードと同じように<code>languages</code>オブジェクトから<code>ja</code>と<code>en</code>プロパティを取り出して変数として定義しています。
@@ -1628,7 +1655,7 @@ obj.key = <span class="hljs-string">&quot;value&quot;</span>;
 そのため、次のものをプロパティ名として扱う場合にはブラケット記法を利用します。</p>
 <ul>
 <li>変数</li>
-<li>変数の識別子として扱えない文字列（詳細は「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の章を参照）</li>
+<li>変数の識別子として扱えない文字列</li>
 <li>Symbol</li>
 </ul>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1690,10 +1717,10 @@ obj.key = <span class="hljs-string">&quot;Hi!&quot;</span>; <span class="hljs-co
 <p>JavaScriptの<code>const</code>は値を固定するのではなく、変数への再代入を防ぐためのものです。
 そのため、次のような<code>obj</code>変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の<a href="../variables/#const">const</a>を参照）。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> };
-obj = {}; <span class="hljs-comment">// =&gt; SyntaxError</span>
+obj = {}; <span class="hljs-comment">// =&gt; TypeError</span>
 </code></pre>
 <p>作成したオブジェクトのプロパティの変更を防止するには<code>Object.freeze</code>メソッドを利用する必要があります。
-<code>Object.freeze</code>はオブジェクトを凍結します。凍結されたオブジェクトでプロパティの追加や変更すると例外が発生するようになります。</p>
+<code>Object.freeze</code>はオブジェクトを凍結します。凍結されたオブジェクトでプロパティの追加や変更をすると例外が発生するようになります。</p>
 <p>ただし、<code>Object.freeze</code>メソッドを利用する場合は必ずstrict modeと合わせて使います（詳細は「<a href="../introduction/">JavaScriptとは</a>」の<a href="../introduction/#strict-mode">strict mode</a>を参照）。
 strict modeではない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1760,7 +1787,7 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
 </code></pre>
 <p>このような問題があるため、プロパティが存在するかを判定するには<code>in</code>演算子か<code>Object.hasOwn</code>静的メソッドを利用します。</p>
 <h3 id="in-operator"><a name="in-operator" class="plugin-anchor" href="#in-operator"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在確認: in演算子を使う </h3>
-<p><code>in</code>演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定できます。</p>
+<p><code>in</code>演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定し真偽値を返します。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-string">&quot;プロパティ名&quot;</span> <span class="hljs-keyword">in</span> オブジェクト; <span class="hljs-comment">// true or false</span>
 </code></pre>
@@ -1794,7 +1821,7 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
 <p><code>in</code>演算子と<code>Object.hasOwn</code>静的メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
 そのため、<code>in</code>演算子と<code>Object.hasOwn</code>静的メソッドの違いについては、次の章の「<a href="../prototype-object/" title="クラス">プロトタイプオブジェクト</a>」で詳しく解説します。</p>
-<h2 id="hasOwnProperty-method"><a name="hasOwnProperty-method" class="plugin-anchor" href="#hasOwnProperty-method"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在確認: <code>Object.prototype.hasOwnProperty</code>メソッド </h2>
+<h3 id="hasOwnProperty-method"><a name="hasOwnProperty-method" class="plugin-anchor" href="#hasOwnProperty-method"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在確認: <code>Object.prototype.hasOwnProperty</code>メソッド </h3>
 <p><code>Object.hasOwn</code>静的メソッドはES2022で導入されたメソッドです。
 ES2022より前では、<code>Object.prototype.hasOwnProperty</code>メソッドというよく似たメソッドが利用されていました。
 <code>hasOwnProperty</code>メソッドは、<code>Object.hasOwn</code>静的メソッドとよく似ていますが、オブジェクトのインスタンスから呼び出す点が異なります。</p>
@@ -1946,7 +1973,8 @@ obj[symbolKey2] = <span class="hljs-string">&quot;2&quot;</span>;
 <span class="hljs-built_in">console</span>.log(obj[symbolKey2]); <span class="hljs-comment">// =&gt; &quot;2&quot;</span>
 </code></pre>
 <p>基本的にはオブジェクトのプロパティ名は文字列として扱われることを覚えておくとよいでしょう。
-また、<code>Map</code>というビルトインオブジェクトはオブジェクトをキーとして扱えます（詳細は「<a href="../map-and-set/">Map/Set</a>」の章で解説します）。</p>
+また、<code>Map</code>というビルトインオブジェクトはオブジェクトをキーとして扱えます（詳細は「<a href="../map-and-set/">Map/Set</a>」の章で解説します）。
+そのため、オブジェクトをキーに指定したい場合は<code>Map</code>を利用します。</p>
 <!-- 仕様: ToPropertyKeyによって文字列化されている
 
 - https://github.com/asciidwango/js-primer/pull/854
@@ -1982,7 +2010,7 @@ obj[symbolKey2] = <span class="hljs-string">&quot;2&quot;</span>;
 <span class="hljs-comment">// `Object.entries`は[キー, 値]の配列を返す</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.entries(obj)); <span class="hljs-comment">// =&gt; [[&quot;one&quot;, 1], [&quot;two&quot;, 2], [&quot;three&quot;, 3]]</span>
 </code></pre>
-<p>これらの列挙する静的メソッドと配列の<code>forEach</code>メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
+<p>これらのプロパティを列挙する静的メソッドと配列の<code>forEach</code>メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
 次のコードでは、<code>Object.keys</code>メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
@@ -2146,13 +2174,13 @@ deep copyは、再帰的にshallow copyすることで実現できます。
 <ul>
 <li><code>Object</code>というビルトインオブジェクトがある</li>
 <li><code>{}</code>（オブジェクトリテラル）でのオブジェクトの作成や更新方法</li>
-<li>プロパティの存在確認するには<code>in</code>演算子か<code>Object.hasOwn</code>静的メソッドを使う</li>
+<li>プロパティの存在を確認するには<code>in</code>演算子か<code>Object.hasOwn</code>静的メソッドを使う</li>
 <li>Optional chaining演算子（<code>?.</code>）はネストしたプロパティの存在確認とアクセスを同時に行う記法</li>
 <li>オブジェクトのインスタンスメソッドと静的メソッド</li>
 </ul>
 <p>JavaScriptの<code>Object</code>は他のオブジェクトのベースとなるオブジェクトです。
 次の「<a href="../prototype-object/" title="クラス">プロトタイプオブジェクト</a>」の章では、<code>Object</code>がどのようにベースとして動作しているのかを見ていきます。</p>
-
+</body></html>
                                 
                                 </section>
                             
@@ -2183,7 +2211,7 @@ deep copyは、再帰的にshallow copyすることで実現できます。
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2022-03-04T11:39:12.877Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2023-05-08T14:52:04.847Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -2241,15 +2269,15 @@ deep copyは、再帰的にshallow copyすることで実現できます。
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

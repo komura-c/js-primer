@@ -6,7 +6,7 @@
         <title>アプリケーション開発の準備 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="アプリケーション開発のためにNode.jsとnpmのインストールなどの準備方法を紹介します。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/use-case/setup-local-env/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../../basic/async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,7 +1463,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="setup-local-env"><a name="setup-local-env" class="plugin-anchor" href="#setup-local-env"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーション開発の準備 </h1>
+                                <html><head></head><body><h1 id="setup-local-env"><a name="setup-local-env" class="plugin-anchor" href="#setup-local-env"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーション開発の準備 </h1>
 <p>これまでに学んだJavaScriptの基本構文は、実行環境を問わずに使えるものです。
 しかしこの後に続くユースケースの章では、具体的な実行環境としてウェブブラウザと<a href="https://nodejs.org/ja/" target="_blank">Node.js</a>の2つを扱います。
 また、ブラウザで実行するアプリケーションであっても、その開発にはツールとしてのNode.jsが欠かせません。
@@ -1448,45 +1471,62 @@
 <h2 id="install-nodejs"><a name="install-nodejs" class="plugin-anchor" href="#install-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Node.jsのインストール </h2>
 <p><a href="https://nodejs.org/ja/" target="_blank">Node.js</a>はサーバーサイドJavaScript実行環境のひとつで、次のような特徴があります。</p>
 <ul>
-<li>ウェブブラウザのChromeと同じ<a href="https://developers.google.com/v8/" target="_blank">V8</a> JavaScriptエンジンで動作する</li>
+<li>ウェブブラウザのChromeと同じ<a href="https://v8.dev/" target="_blank">V8</a> JavaScriptエンジンで動作する</li>
 <li>オープンソースで開発されている</li>
 <li>OSを問わずクロスプラットフォームで動作する</li>
 </ul>
 <p>Node.jsはサーバーサイドで使うために開発されました。
-しかし今ではコマンドラインツールや<a href="http://electron.atom.io/" target="_blank">Electron</a>などのデスクトップアプリケーションにも利用されています。
+しかし今ではコマンドラインツールや<a href="https://www.electronjs.org/" target="_blank">Electron</a>などのデスクトップアプリケーションにも利用されています。
 そのため、Node.jsはサーバーサイドに限らずクライアントサイドのJavaScript実行環境としても幅広く使われています。</p>
 <p>Node.jsは多くの他のプログラミング言語と同じように、実行環境をマシンにインストールすることで使用できます。
 公式の<a href="https://nodejs.org/ja/download/" target="_blank">ダウンロードページ</a>から、開発用のマシンに合わせたインストーラをダウンロードして、インストールしましょう。</p>
+<ul>
+<li>ダウンロードページのURL: <a href="https://nodejs.org/ja/download/" target="_blank">https://nodejs.org/ja/download/</a></li>
+</ul>
 <p>Node.jsには<strong>LTS（Long-Term Support）</strong>版と最新版の2つのリリース版があります。
 <strong>LTS（Long-Term Support）</strong>版は2年間のメンテナンスとサポートが宣言されたバージョンです。
 具体的には、後方互換性を壊さない範囲でのアップデートと、継続的なセキュリティパッチの提供が行われます。
 一方で、最新版はNode.jsの最新の機能を使用できますが、常に最新のバージョンしかメンテナンスされません。
 ほとんどのユーザーは、LTS版を用いることが推奨されます。Node.jsでの開発が初めてであれば、迷わずにLTS版のインストーラをダウンロードしましょう。
-この章では執筆時点の最新LTS版であるバージョン14.15.0で動作するように開発します。</p>
+この章では執筆時点の最新LTS版であるバージョン18.14.0で動作するように開発します。</p>
 <p>インストールが完了すると、コマンドラインで<code>node</code>コマンドが使用可能になっているはずです。
 次のコマンドを実行して、インストールされたNode.jsのバージョンを確認しましょう
 （<code>$</code>はコマンドラインの入力欄を表す記号であるため、実際に入力する必要はありません）。</p>
 <pre><code>$ node -v
-v14.15.0
+v18.14.0
 </code></pre><p>また、Node.jsには<a href="https://www.npmjs.com/" target="_blank">npm</a>というパッケージマネージャーが同梱されています。
 Node.jsをインストールすると、<code>node</code>コマンドだけでなくnpmを扱うための<code>npm</code>コマンドも使えるようになっています。
 次のコマンドを実行して、インストールされたnpmのバージョンを確認しましょう。</p>
 <pre><code>$ npm -v
-6.14.8
-</code></pre><p>npmや<code>npm</code>コマンドについての詳細は<a href="https://docs.npmjs.com/" target="_blank">公式ドキュメント</a>や<a href="https://github.com/npm/cli" target="_blank">npmのGitHubリポジトリ</a>を参照してください。
-Node.jsのライブラリのほとんどはnpmを使ってインストールできます。
+9.3.1
+</code></pre><p>Node.jsとnpmのバージョン番号は<code>{major}.{minor}.{patch}</code>という構成になっていて、先頭のメジャーバージョンが同じなら互換性は保証されています。</p>
+<p>Node.jsのライブラリのほとんどはnpmを使ってインストールできます。
+npmや<code>npm</code>コマンドについての詳細は<a href="https://docs.npmjs.com/" target="_blank">npmの公式ドキュメント</a>や<a href="https://github.com/npm/cli" target="_blank">npmのGitHubリポジトリ</a>を参照してください。
 実際に、ユースケースの章ではnpmを使ってライブラリをインストールして利用します。</p>
 <h2 id="npx-execution"><a name="npx-execution" class="plugin-anchor" href="#npx-execution"><i class="fa fa-link" aria-hidden="true"></i></a>npxコマンドによるnpmパッケージの実行 </h2>
 <p>Node.jsを使ったコマンドラインツールは数多く公開されており、npmでインストールすることによりコマンドとして実行できるようになります。
-ところで、Node.jsのインストールにより、<a href="https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner" target="_blank">npx</a>というコマンドも使えるようになっています。
+ところで、Node.jsのインストールにより、<a href="https://docs.npmjs.com/cli/v8/commands/npx/" target="_blank">npx</a>というコマンドも使えるようになっています。
 <code>npx</code>コマンドを使うと、npmで公開されている実行可能なパッケージのインストールと実行をまとめてできます。
 この後のユースケースでも<code>npx</code>コマンドでツールを利用するため、ここでツールの実行を試してみましょう。</p>
 <p>ここでは例として<a href="https://github.com/js-primer/hello-world" target="_blank">@js-primer/hello-world</a>というサンプル用のパッケージを実行します。
-<code>npx</code>コマンドでコマンドラインツールを実行するには、次のように <code>npx</code>コマンドにパッケージ名を渡して実行します。</p>
-<pre><code>$ npx @js-primer/hello-world
-npx: 1個のパッケージを7.921秒でインストールしました。
+<code>npx</code>コマンドでコマンドラインツールを実行するには、次のように <code>npx</code>コマンドにパッケージ名を渡して実行します。
+npx 7から、初めて実行するコマンドは対話式のプロンプトでパッケージをインストールするかが確認されます。
+このプロンプトに対してEnterキーを押すとインストールが開始され、コマンドが実行されます。</p>
+<pre><code class="lang-bash">$ npx @js-primer/hello-world
+Need to install the following packages:
+  @js-primer/hello-world@1.0.0
+Ok to proceed? (y)
+<span class="hljs-comment"># 初回は@js-primer/hello-worldをインストールしていいかを確認するプロンプトが表示される</span>
+<span class="hljs-comment"># Enterを押すとインストールが開始され、コマンドが実行される</span>
+
 Hello World!
-</code></pre><p>このように、<code>npx</code>コマンドを使うことによりnpmで公開されているコマンドラインツールを簡単に実行できます。</p>
+</code></pre>
+<p>デフォルトでは対話式のプロンプトが挟まれますが、次のように<code>--yes</code>オプションを付与すると自動的にインストールとコマンドが実行されます。</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># --yesオプションで、インストールの確認プロンプトをスキップする</span>
+$ npx --yes @js-primer/hello-world
+Hello World!
+</code></pre>
+<p>このように、<code>npx</code>コマンドを使うことによりnpmで公開されているコマンドラインツールを簡単に実行できます。</p>
 <h3 id="command-line-tools-installation"><a name="command-line-tools-installation" class="plugin-anchor" href="#command-line-tools-installation"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] コマンドラインツールのインストールと実行 </h3>
 <p>npmで公開されているコマンドラインツールを実行する方法は<code>npx</code>コマンドだけではありません。
 <code>npm install</code>コマンドを使ってパッケージをインストールし、インストールされたパッケージのコマンドを実行する方法があります。
@@ -1494,10 +1534,11 @@ Hello World!
 グローバルインストールされたパッケージのコマンドは、<code>node</code>コマンドや<code>npm</code>コマンドと同じように、任意の場所から実行できます。</p>
 <p>次の例では<code>@js-primer/hello-world</code>パッケージをグローバルインストールしています。
 その後、パッケージに含まれている<code>js-primer-hello-world</code>コマンドを絶対パスの指定なしで呼び出しています。</p>
-<pre><code>$ npm install --global @js-primer/hello-world
+<pre><code class="lang-bash">$ npm install --global @js-primer/hello-world
 $ js-primer-hello-world
 Hello World!
-</code></pre><h2 id="local-server"><a name="local-server" class="plugin-anchor" href="#local-server"><i class="fa fa-link" aria-hidden="true"></i></a>ローカルサーバーのセットアップ </h2>
+</code></pre>
+<h2 id="local-server"><a name="local-server" class="plugin-anchor" href="#local-server"><i class="fa fa-link" aria-hidden="true"></i></a>ローカルサーバーのセットアップ </h2>
 <p>「<a href="../../basic/read-eval-print/">値の評価と表示</a>」の章では、<code>index.html</code>と<code>index.js</code>というファイルを作成してブラウザで表示していました。
 このときローカルに作成したHTMLファイルをそのままブラウザで読み込むと、ブラウザのアドレスバーは<code>file:///</code>からはじまるURLになります。
 <code>file</code>スキーマでは<a href="https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy" target="_blank">Same Origin Policy</a>というセキュリティ的な制限により、多くの場面でアプリケーションは正しく動作しません。</p>
@@ -1536,12 +1577,12 @@ Hello World!
 <p>先ほど作成した<code>index.html</code>と同じディレクトリで、ローカルサーバーを起動します。
 次のコマンドでは、<a href="https://github.com/js-primer/local-server" target="_blank">@js-primer/local-server</a>というこの書籍用に作成されたローカルサーバーモジュールをダウンロードと同時に実行します。
 このローカルサーバーモジュールは、<code>http</code>スキーマのURLでローカルファイルへアクセスできるように、実行したディレクトリにあるファイルを配信する機能を持ちます。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">#</span><span class="bash"> からはじまる行はコメントなので実行はしなくてよい</span>
-<span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">cd</span>コマンドでファイルがあるディレクトリまで移動</span>
-<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;index.htmlがあるディレクトリのパス&quot;</span></span>
-<span class="hljs-meta">
-#</span><span class="bash"> npx コマンドでローカルサーバーを起動</span>
-<span class="hljs-meta">$</span><span class="bash"> npx @js-primer/local-server</span>
+<pre><code class="lang-bash"><span class="hljs-comment"># からはじまる行はコメントなので実行はしなくてよい</span>
+<span class="hljs-comment"># cdコマンドでファイルがあるディレクトリまで移動</span>
+$ <span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;index.htmlがあるディレクトリのパス&quot;</span>
+
+<span class="hljs-comment"># npx コマンドでローカルサーバーを起動</span>
+$ npx --yes @js-primer/local-server
 
 js-primerのローカルサーバーを起動しました。
 次のURLをブラウザで開いてください。
@@ -1559,17 +1600,17 @@ Console APIで出力したログを確認するには、ウェブブラウザの
 ほとんどのブラウザで開発者ツールが同梱されていますが、この書籍ではFirefoxを使って確認します。</p>
 <p>Firefoxの開発者ツールは次のいずれかの方法で開きます。</p>
 <ul>
-<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の Web 開発サブメニューで &quot;Web コンソール&quot; を選択する</li>
+<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の &quot;ブラウザーツール&quot;のサブメニューから &quot;ウェブ開発ツール&quot; を選択する</li>
 <li>キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する</li>
 </ul>
-<p>詳細は&quot;<a href="https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console" target="_blank">Webコンソールを開く</a>&quot;を参照してください。</p>
+<p>詳細は「<a href="https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools" target="_blank">ブラウザーの開発者ツールとは？</a>」を参照してください。</p>
 <h3 id="close-js-primer-local-server"><a name="close-js-primer-local-server" class="plugin-anchor" href="#close-js-primer-local-server"><i class="fa fa-link" aria-hidden="true"></i></a>ローカルサーバーを終了する </h3>
 <p>最後に、起動したローカルサーバーを終了します。
 ローカルサーバーを起動したコマンドラインで、<code>Ctrl+C</code>を押下することで終了できます。</p>
 <p>複数のローカルサーバーを同時に起動することもできますが、複数のサーバーで同じポート番号を利用することはできません。
 ポートとは、先ほど起動したローカルサーバーのURLで<code>:3000</code>となっていた部分のことで、これは3000番ポートでローカルサーバーを起動したことを意味しています。</p>
 <p><code>@js-primer/local-server</code>は、デフォルトのポート（3000番ポート）がすでに使用されているなら、使われていないポートを探してローカルサーバーを起動します。また、<code>--port</code>オプションで任意のポート番号でローカルサーバーを起動できます。</p>
-<pre><code>$ npx @js-primer/local-server --port 8000
+<pre><code>$ npx --yes @js-primer/local-server --port 8000
 </code></pre><p>この書籍では、<code>@js-primer/local-server</code>をデフォルトのポート番号である3000番ポートを利用する前提で進めていきます。
 そのため、使わなくなったローカルサーバーは<code>Ctrl+C</code>で終了しておくことで、アクセスするURL（ポート番号）が書籍と同じ状態で進められます。</p>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
@@ -1581,7 +1622,7 @@ Console APIで出力したログを確認するには、ウェブブラウザの
 </ul>
 <p>npmでは、すでに多種多様なローカルサーバーモジュールが公開されています。
 この書籍では、利用するローカルサーバーの機能で違いが出ないように<code>@js-primer/local-server</code>というこの書籍用のローカルサーバーモジュールを利用します。</p>
-
+</body></html>
                                 
                                 </section>
                             
@@ -1612,7 +1653,7 @@ Console APIで出力したログを確認するには、ウェブブラウザの
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"アプリケーション開発のためにNode.jsとnpmのインストールなどの準備方法を紹介します。","title":"アプリケーション開発の準備","level":"1.4.1","depth":2,"next":{"title":"Ajax通信","level":"1.4.2","depth":2,"path":"use-case/ajaxapp/README.md","ref":"./use-case/ajaxapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]}]},"previous":{"title":"第二部: 応用編（ユースケース）","level":"1.4","depth":1,"path":"use-case/README.md","ref":"./use-case/README.md","articles":[{"title":"アプリケーション開発の準備","level":"1.4.1","depth":2,"path":"use-case/setup-local-env/README.md","ref":"./use-case/setup-local-env/README.md","articles":[]},{"title":"Ajax通信","level":"1.4.2","depth":2,"path":"use-case/ajaxapp/README.md","ref":"./use-case/ajaxapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]}]},{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/setup-local-env/README.md","mtime":"2022-03-04T11:39:12.897Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"アプリケーション開発のためにNode.jsとnpmのインストールなどの準備方法を紹介します。","title":"アプリケーション開発の準備","level":"1.4.1","depth":2,"next":{"title":"Ajax通信","level":"1.4.2","depth":2,"path":"use-case/ajaxapp/README.md","ref":"./use-case/ajaxapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]}]},"previous":{"title":"第二部: 応用編（ユースケース）","level":"1.4","depth":1,"path":"use-case/README.md","ref":"./use-case/README.md","articles":[{"title":"アプリケーション開発の準備","level":"1.4.1","depth":2,"path":"use-case/setup-local-env/README.md","ref":"./use-case/setup-local-env/README.md","articles":[]},{"title":"Ajax通信","level":"1.4.2","depth":2,"path":"use-case/ajaxapp/README.md","ref":"./use-case/ajaxapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]}]},{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/setup-local-env/README.md","mtime":"2023-05-08T14:52:04.867Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1670,15 +1711,15 @@ Console APIで出力したログを確認するには、ウェブブラウザの
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

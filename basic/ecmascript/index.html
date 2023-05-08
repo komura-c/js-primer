@@ -6,7 +6,7 @@
         <title>ECMAScript · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/ecmascript/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,9 +1463,9 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="ecmascript"><a name="ecmascript" class="plugin-anchor" href="#ecmascript"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScript </h1>
+                                <html><head></head><body><h1 id="ecmascript"><a name="ecmascript" class="plugin-anchor" href="#ecmascript"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScript </h1>
 <p>ここまでJavaScriptの基本文法について見てきましたが、その文法を定めるECMAScriptという仕様自体がどのように変化していくのかを見ていきましょう。</p>
-<p>ECMAScriptは<a href="http://www.ecma-international.org/" title="Ecma International" target="_blank">Ecma International</a>という団体によって標準化されている仕様です。
+<p>ECMAScriptは<a href="https://www.ecma-international.org/" title="Ecma International" target="_blank">Ecma International</a>という団体によって標準化されている仕様です。
 Ecma InternationalはECMAScript以外にもC#やDartなどの標準化作業をしています。
 Ecma Internationalの中のTechnical Committee 39（TC39）という技術委員会が中心となって、ECMAScript仕様について議論しています。
 この技術委員会はMicrosoft、Mozilla、Google、AppleといったブラウザベンダーやECMAScriptに関心のある企業などによって構成されます。</p>
@@ -1493,7 +1516,7 @@ Ecma Internationalの中のTechnical Committee 39（TC39）という技術委員
 <td>2017年6月</td>
 </tr>
 <tr>
-<td>以下毎年リリース</td>
+<td>以降毎年リリース</td>
 </tr>
 </tbody>
 </table>
@@ -1503,12 +1526,12 @@ Ecma Internationalの中のTechnical Committee 39（TC39）という技術委員
 <!-- textlint-enable -->
 <h2 id="living-standard"><a name="living-standard" class="plugin-anchor" href="#living-standard"><i class="fa fa-link" aria-hidden="true"></i></a>Living StandardとなるECMAScript </h2>
 <p>現在、ECMAScriptの仕様書のドラフトはGitHub上の<a href="https://github.com/tc39/ecma262" title="tc39/ecma262: Status, process, and documents for ECMA262" target="_blank">tc39/ecma262</a>で管理されており、日々更新されています。
-そのため、本当の意味での最新のECMAScript仕様は<a href="https://tc39.github.io/ecma262/" target="_blank">https://tc39.github.io/ecma262/</a>となります。
+そのため、本当の意味での最新のECMAScript仕様は<a href="https://tc39.es/ecma262/" target="_blank">https://tc39.es/ecma262/</a>となります。
 このように更新ごとにバージョン番号をつけずに、常に最新版を公開する仕様のことを<strong>Living Standard</strong>と呼びます。</p>
 <p>ECMAScriptはLiving Standardですが、これに加えてECMAScript 2017のようにバージョン番号をつけたものも公開されています。
 このバージョンつきECMAScriptは、毎年決まった時期のドラフトを元にしたスナップショットのようなものです。</p>
 <p>ブラウザなどに実際にJavaScriptとして実装される際には、Living StandardのECMAScriptを参照しています。
-これは、ブラウザ自体も日々更新されるものであり、決まった時期にしかリリースされないバージョンつきよりもLiving Standardのほうが適当であるためです。</p>
+これは、ブラウザ自体も日々更新されるものであり、決まった時期にしかリリースされないバージョンつきよりもLiving Standardのほうが適切であるためです。</p>
 <h2 id="specification-process"><a name="specification-process" class="plugin-anchor" href="#specification-process"><i class="fa fa-link" aria-hidden="true"></i></a>仕様策定のプロセス </h2>
 <p>ES2015以前はすべての仕様の合意が取れるまで延々と議論を続け、すべてが決まってからリリースされていました。
 そのため、ES2015がリリースされるまでには長い時間がかかり、言語の進化が停滞していました。
@@ -1549,7 +1572,7 @@ ES2016以降では、次のような仕様策定のプロセスで議論を進�
 </tbody>
 </table>
 <p>2ヶ月に一度行われるTC39のミーティングにおいて、プロポーザルごとにステージを進めるかどうかを議論します。
-このミーティングの議事録もGitHub上の<a href="https://github.com/tc39/tc39-notes" title="tc39/tc39-notes: TC39 Meeting Notes" target="_blank">tc39/tc39-notes</a>にて公開されています。
+このミーティングの議事録もGitHub上の<a href="https://github.com/tc39/notes" title="tc39/tc39-notes: TC39 Meeting Notes" target="_blank">tc39/tc39-notes</a>にて公開されています。
 ステージ4となったプロポーザルはドラフト版である<a href="https://github.com/tc39/ecma262" title="tc39/ecma262: Status, process, and documents for ECMA262" target="_blank">tc39/ecma262</a>へマージされます。
 そして毎年の決まった時期にドラフト版を元にして<code>ECMAScript 20XX</code>としてリリースします。</p>
 <p>この仕様策定プロセスの変更は、ECMAScriptに含まれる機能の形にも影響しています。</p>
@@ -1575,7 +1598,7 @@ Transpilerとしては<a href="https://babeljs.io/" title="Babel · The compiler
 <p>Polyfillとは、新しい関数やメソッドなどの仕様を満たすような実装を提供するライブラリのことです。
 たとえば、ES2016ではArrayに<code>includes</code>というメソッドが追加されました。
 構文とは異なり<code>includes</code>のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
-Polyfillを提供するものとしては<a href="https://github.com/zloirock/core-js" title="zloirock/core-js: Standard Library" target="_blank">core-js</a>や<a href="https://polyfill.io/v2/docs/" title="Polyfill service" target="_blank">polyfill.io</a>などが有名です。</p>
+Polyfillを提供するものとしては<a href="https://github.com/zloirock/core-js" title="zloirock/core-js: Standard Library" target="_blank">core-js</a>や<a href="https://polyfill.io/v3/" title="Polyfill service" target="_blank">polyfill.io</a>などが有名です。</p>
 <p>注意点としてはTranspilerやPolyfillは、あくまで既存の機能を用いて新しい機能の再現を試みているだけにすぎません。
 そのため、既存の機能で再現ができないプロポーザル（機能）はTranspilerやPolyfillでは再現できません。
 また、完全な再現はできていないことがあるためTranspilerやPolyfillを新しい機能を学ぶために使うべきではありません。</p>
@@ -1629,15 +1652,15 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 <sup>1</sup>. ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに仕様が破棄されました。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
 <blockquote id="fn_2">
-<sup>2</sup>. この策定プロセスは<a href="https://tc39.github.io/process-document/" target="_blank">https://tc39.github.io/process-document/</a>に詳細が書かれています。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> ↩</a>
+<sup>2</sup>. この策定プロセスは<a href="https://tc39.es/process-document/" target="_blank">https://tc39.es/process-document/</a>に詳細が書かれています。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> ↩</a>
 </blockquote>
 <blockquote id="fn_3">
 <sup>3</sup>. ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた<a href="http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf" target="_blank">Programming Language Standardization</a>に詳細が書かれています。<a href="#reffn_3" title="Jump back to footnote [3] in the text."> ↩</a>
 </blockquote>
 <blockquote id="fn_4">
-<sup>4</sup>. <a href="https://github.com/tc39/proposals/blob/master/inactive-proposals.md" target="_blank">Inactive Proposals</a>に策定を中止したプロポーザルの一覧が公開されています。<a href="#reffn_4" title="Jump back to footnote [4] in the text."> ↩</a>
+<sup>4</sup>. <a href="https://github.com/tc39/proposals/blob/main/inactive-proposals.md" target="_blank">Inactive Proposals</a>に策定を中止したプロポーザルの一覧が公開されています。<a href="#reffn_4" title="Jump back to footnote [4] in the text."> ↩</a>
 </blockquote>
-
+</body></html>
                                 
                                 </section>
                             
@@ -1668,7 +1691,7 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。","title":"ECMAScript","level":"1.3.28","depth":2,"next":{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]},"previous":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/ecmascript/README.md","mtime":"2022-03-04T11:39:12.869Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。","title":"ECMAScript","level":"1.3.28","depth":2,"next":{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]},"previous":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/ecmascript/README.md","mtime":"2023-05-08T14:52:04.843Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1726,15 +1749,15 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

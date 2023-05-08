@@ -6,7 +6,7 @@
         <title>関数とスコープ · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/function-scope/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,7 +1463,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="function-and-scope"><a name="function-and-scope" class="plugin-anchor" href="#function-and-scope"><i class="fa fa-link" aria-hidden="true"></i></a>関数とスコープ </h1>
+                                <html><head></head><body><h1 id="function-and-scope"><a name="function-and-scope" class="plugin-anchor" href="#function-and-scope"><i class="fa fa-link" aria-hidden="true"></i></a>関数とスコープ </h1>
 <p>定義された関数はそれぞれのスコープを持っています。スコープとは変数や関数の引数などを参照できる範囲を決めるものです。
 JavaScriptでは、新しい関数を定義するとその関数にひもづけられた新しいスコープが作成されます。関数を定義するということは処理をまとめるというだけではなく、変数が有効な範囲を決める新しいスコープを作っていると言えます。</p>
 <p>スコープの仕組みを理解することは関数をより深く理解することにつながります。なぜなら関数とスコープは密接な関係を持っているからです。
@@ -1476,12 +1499,12 @@ fn();
 
 関数の宣言
 - Set F.[[FormalParameters]] to ParameterList.
-- https://tc39.github.io/ecma262/#sec-functioninitialize
+- https://tc39.es/ecma262/#sec-functioninitialize
 - function objectの[[Environment]]ではなく、[[FormalParameters]]に代入される
 - 仮引数は関数のスコープではなくfunction objectに紐づく
 
 関数の初期化処理
-- https://tc39.github.io/ecma262/#sec-functiondeclarationinstantiation
+- https://tc39.es/ecma262/#sec-functiondeclarationinstantiation
 - [[FormalParameters]]は初期化時に`varEnv`に対して代入される
 - つまり、仮引数はvarで宣言しているのと同じになる
 - スコープという意味では内側のみから参照でき、外からは参照できないという点で同じ
@@ -1533,11 +1556,11 @@ fn(<span class="hljs-number">1</span>);
 <p>ブロックによるスコープのことを<strong>ブロックスコープ</strong>と呼びます。</p>
 <!-- Notes: ブロックスコープと仕様
 
-- ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
+- ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.es/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
 - つまり、新しいLexicalEnvironmentというスコープを作成している
-- https://tc39.github.io/ecma262/#sec-block-runtime-semantics-evaluation
+- https://tc39.es/ecma262/#sec-block-runtime-semantics-evaluation
 - そして評価する際に、そのブロック内に宣言されている変数をスコープに対してひもづけている
-- https://tc39.github.io/ecma262/#sec-blockdeclarationinstantiation
+- https://tc39.es/ecma262/#sec-blockdeclarationinstantiation
 
  -->
 <p>if文やwhile文などもブロックスコープを作成します。
@@ -1672,10 +1695,10 @@ fn();
 どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも<strong>ビルトインオブジェクト</strong>と呼ぶことにします。</p>
 <!-- Notes: global objectとbuilt-in object
 
-- global object: https://tc39.github.io/ecma262/#sec-global-object
+- global object: https://tc39.es/ecma262/#sec-global-object
     - `global`でアクセスできる予定 https://github.com/tc39/proposal-global
     - Arrayなどもglobal objectのプロパティの一種
-- builtin object: https://tc39.github.io/ecma262/#sec-built-in-object
+- builtin object: https://tc39.es/ecma262/#sec-built-in-object
     - ECMAScriptの定義したものと実装が加えたオブジェクトをまとめた用語
 - 仕様どおりの定義で言えば、紹介してる`undefined`などはあくまでglobal objectのプロパティ
 - `global`を使ってプロパティとしてアクセスする方法は言及していないので省略している
@@ -1740,7 +1763,7 @@ measureTask(doHeavyTask);
 また、実行時間を計測するという処理を<code>measureTask</code>という関数にしたことで再利用できます。</p>
 <p>コードの量が増えていくにつれ、人が一度に把握できる量にも限界がやってきます。
 そのため、人が一度に把握できる範囲のサイズに処理をまとめていくことが必要です。
-この問題を解決するアプローチとして、変数の参照できる範囲を小さくすることや処理を関数にまとめるという手法がよく利用されます。</p>
+この問題を解決するアプローチとして、変数を参照できる範囲を小さくするために、処理を関数にまとめるという手法がよく利用されます。</p>
 <h2 id="hoisting-var"><a name="hoisting-var" class="plugin-anchor" href="#hoisting-var"><i class="fa fa-link" aria-hidden="true"></i></a>関数スコープとvarの巻き上げ </h2>
 <!-- textlint-disable eslint -->
 <p>変数宣言には<code>var</code>、<code>let</code>、<code>const</code>が利用できます。
@@ -1761,7 +1784,7 @@ var_x = <span class="hljs-string">&quot;varのx&quot;</span>;
 </code></pre>
 <p>次に、<code>let</code>と<code>var</code>で異なる動作を見ていきます。</p>
 <p><code>let</code>では、変数を<strong>宣言する前</strong>にその変数を参照すると<code>ReferenceError</code>の例外が発生して参照できません。
-次のコードでは、変数を宣言する前に、変数<code>x</code>を参照したため<code>ReferenceError</code>となっています。
+次のコードでは、変数を宣言する前に変数<code>x</code>を参照したため<code>ReferenceError</code>となっています。
 エラーメッセージから、変数<code>x</code>が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなっているのがわかります。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; ReferenceError: can&apos;t access lexical declaration `x&apos; before initialization</span>
@@ -1889,8 +1912,8 @@ fn();
 <span class="hljs-comment">// foo変数のスコープ外</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&quot;undefined&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<p>ECMAScript 5までは、変数を宣言する方法は<code>var</code>しか存在しません。
-即時実行関数は<code>var</code>によるグローバルスコープの汚染を防ぐために必要でした。</p>
+<p>ECMAScript 5までは、変数を宣言する方法は<code>var</code>しか存在しませんでした。
+そのため、即時実行関数は<code>var</code>によるグローバルスコープの汚染を防ぐために使われていました。</p>
 <p>しかしECMAScript 2015で導入された<code>let</code>と<code>const</code>により、ブロックスコープに対して変数宣言できるようになりました。
 そのため、グローバルスコープの汚染を防ぐための即時実行関数は不要です。
 先ほどの即時実行関数は次のように<code>let</code>や<code>const</code>とブロックスコープで置き換えられます。</p>
@@ -2105,7 +2128,7 @@ printX();
 <span class="hljs-comment">// countUpとnewCountUpはそれぞれ別のincrement関数(内側にあるのも別のcount変数)</span>
 <span class="hljs-keyword">const</span> countUp = createCounter();
 <span class="hljs-keyword">const</span> newCountUp = createCounter();
-<span class="hljs-comment">// 参照してる関数(オブジェクト)は別であるため===は一致しない</span>
+<span class="hljs-comment">// 参照している関数(オブジェクト)は別であるため===は一致しない</span>
 <span class="hljs-built_in">console</span>.log(countUp === newCountUp);<span class="hljs-comment">// false</span>
 <span class="hljs-comment">// それぞれの状態も別となる</span>
 <span class="hljs-built_in">console</span>.log(countUp()); <span class="hljs-comment">// =&gt; 1</span>
@@ -2202,7 +2225,7 @@ countUp.count = <span class="hljs-number">10</span>;
 <blockquote id="fn_2">
 <sup>2</sup>. ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> ↩</a>
 </blockquote>
-
+</body></html>
                                 
                                 </section>
                             
@@ -2233,7 +2256,7 @@ countUp.count = <span class="hljs-number">10</span>;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2022-03-04T11:39:12.873Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2023-05-08T14:52:04.843Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -2291,15 +2314,15 @@ countUp.count = <span class="hljs-number">10</span>;
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

@@ -6,7 +6,7 @@
         <title>ECMAScriptモジュール · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/module/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,8 +1463,10 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="module"><a name="module" class="plugin-anchor" href="#module"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] ECMAScriptモジュール </h1>
-<p>ECMAScriptモジュールは<a href="../../use-case/todoapp/">Todoアプリのユースケース</a>で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージをつかむのが目的です。
+                                <html><head></head><body><h1 id="module"><a name="module" class="plugin-anchor" href="#module"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] ECMAScriptモジュール </h1>
+<p>モジュールとは、変数や関数などをまとめたものです。
+JavaScriptにおいては、1つのモジュールは1つのJavaScriptファイルに対応します。</p>
+<p>モジュールについては<a href="../../use-case/nodecli/">Node.jsでCLIアプリのユースケース</a>や<a href="../../use-case/todoapp/">Todoアプリのユースケース</a>で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージをつかむのが目的です。
 この章のサンプルコードを実際に動かすためにはローカルサーバーなどの準備が必要です。
 そのため、ユースケースの章を先に読んでから戻ってきてもかまいません。</p>
 <p>モジュールは、保守性・名前空間・再利用性のために使われます。</p>
@@ -1450,9 +1475,10 @@
 <li>名前空間: モジュールごとに分かれたスコープがあり、グローバルの名前空間を汚染しません</li>
 <li>再利用性: 便利な変数や関数を複数の場所にコピーアンドペーストせず、モジュールとして再利用できます</li>
 </ul>
-<p>1つのJavaScriptモジュールは1つのJavaScriptファイルに対応します。
-モジュールは変数や関数などを外部にエクスポートできます。また、別のモジュールで宣言された変数や関数などをインポートできます。
-この章では <strong>ECMAScriptモジュール（ESモジュール、JSモジュールとも呼ばれる）</strong> について見ていきます。
+<p>モジュールは変数や関数などをモジュール外部にエクスポートできます。また、モジュールからエクスポートされた変数や関数などをインポートして利用できます。
+モジュールに処理を分けることで、コードの見通しが良くなったり、特定のことに関する処理をモジュールにまとめたり、処理を再利用できるようになります。
+それによって、コードの行数が増えてきた場合にも、一度にみるコードの量をモジュールで分割できるようになり、メンテナンス性がよくなります。</p>
+<p>この章では、<strong>ECMAScriptモジュール（ESモジュール、JavaScriptモジュールとも呼ばれる）</strong> について見ていきます。
 ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルをモジュール化する言語標準の機能です。</p>
 <h2 id="es-module-syntax"><a name="es-module-syntax" class="plugin-anchor" href="#es-module-syntax"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScriptモジュールの構文 </h2>
 <p>ECMAScriptモジュールは、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">export文</a>によって変数や関数などをエクスポートできます。
@@ -1497,7 +1523,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 <pre><code class="lang-javascript"><span class="hljs-comment">// 名前つきエクスポートされたfooとbarをインポートする</span>
 <span class="hljs-keyword">import</span> { foo, bar } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
 <span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
-<span class="hljs-built_in">console</span>.log(bar); <span class="hljs-comment">// =&gt; &quot;bar&quot;</span>
+<span class="hljs-built_in">console</span>.log(bar); <span class="hljs-comment">// =&gt; function bar()</span>
 </code></pre>
 <h4 id="named-export-import-alias"><a name="named-export-import-alias" class="plugin-anchor" href="#named-export-import-alias"><i class="fa fa-link" aria-hidden="true"></i></a>名前つきエクスポート／インポートのエイリアス </h4>
 <p>名前つきエクスポート／インポートには<strong>エイリアス</strong>の仕組みがあります。
@@ -1682,7 +1708,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 <p>ウェブブラウザの環境では、インポートされるモジュールの取得はネットワーク経由で解決されます。
 そのため、モジュール名はJavaScriptファイルの絶対URLあるいは相対URLを指定します。
 詳しくは<a href="../../use-case/todoapp/">Todoアプリのユースケース</a>を参照してください。</p>
-
+</body></html>
                                 
                                 </section>
                             
@@ -1713,7 +1739,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。","title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"next":{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},"previous":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/module/README.md","mtime":"2022-03-04T11:39:12.877Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。","title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"next":{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},"previous":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/module/README.md","mtime":"2023-05-08T14:52:04.847Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1771,15 +1797,15 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

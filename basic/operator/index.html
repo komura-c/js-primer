@@ -6,7 +6,7 @@
         <title>演算子 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/operator/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,7 +1463,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="operator"><a name="operator" class="plugin-anchor" href="#operator"><i class="fa fa-link" aria-hidden="true"></i></a>演算子 </h1>
+                                <html><head></head><body><h1 id="operator"><a name="operator" class="plugin-anchor" href="#operator"><i class="fa fa-link" aria-hidden="true"></i></a>演算子 </h1>
 <p>演算子はよく利用する演算処理を記号などで表現したものです。
 たとえば、足し算をする <code>+</code> も演算子の一種です。これ以外にも演算子には多くの種類があります。</p>
 <p>演算子は演算する対象を持ちます。この演算子の対象のことを<strong>被演算子（オペランド）</strong>と呼びます。</p>
@@ -1506,8 +1529,12 @@ num++;
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">8</span> / <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 4</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-number">10</span> / <span class="hljs-number">0.5</span>); <span class="hljs-comment">// =&gt; 20</span>
 </code></pre>
+<p>ただし、任意の数値を<code>0</code>で除算した結果は、無限大を表す数値である<code>Infinity</code>となります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">10</span> / <span class="hljs-number">0</span>); <span class="hljs-comment">// =&gt; Infinity</span>
+</code></pre>
 <h3 id="modulus-operator"><a name="modulus-operator" class="plugin-anchor" href="#modulus-operator"><i class="fa fa-link" aria-hidden="true"></i></a>剰余演算子（<code>%</code>） </h3>
-<p>2つの数値のあまりを求める演算子です。左オペランドを右オペランドで除算したあまりを返します。</p>
+<p>2つの数値を除算したあまりを求める演算子です。左オペランドを右オペランドで除算したあまりを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">8</span> % <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 0</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-number">9</span> % <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 1</span>
@@ -1526,7 +1553,7 @@ num++;
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; 16</span>
 </code></pre>
 <p>べき乗演算子はES2016で後から追加された演算子であるため、関数と演算子がそれぞれ存在しています。
-他の二項演算子は演算子が先に存在していたため、<code>Math</code>には対応するメソッドがありません。</p>
+一方、他の二項演算子は演算子が先に存在していたため、<code>Math</code>には対応するメソッドがありません。</p>
 <h2 id="unary-operator"><a name="unary-operator" class="plugin-anchor" href="#unary-operator"><i class="fa fa-link" aria-hidden="true"></i></a>単項演算子（算術） </h2>
 <p>単項演算子は、1つのオペランドを受け取り処理する演算子です。</p>
 <h3 id="unary-plus-operator"><a name="unary-plus-operator" class="plugin-anchor" href="#unary-plus-operator"><i class="fa fa-link" aria-hidden="true"></i></a>単項プラス演算子（<code>+</code>） </h3>
@@ -1589,7 +1616,7 @@ num++;
 <span class="hljs-comment">// 次のようにした場合と結果は同じ</span>
 <span class="hljs-comment">// num = num + 1;</span>
 </code></pre>
-<p>インクリメント演算子（<code>++</code>）は、オペランドの後ろに置くか前に置くかで、それぞれで評価の順番が異なります。</p>
+<p>インクリメント演算子（<code>++</code>）は、オペランドの前後どちらに置くかによって評価の順番が異なります。</p>
 <p>後置インクリメント演算子（<code>num++</code>）は、次のような順で処理が行われます。</p>
 <ol>
 <li><code>num</code>の評価結果を返す</li>
@@ -1780,7 +1807,7 @@ num--;
 <p>これによって、<code>-1</code>の符号付き32ビット整数は <code>1111_1111_1111_1111_1111_1111_1111_1111</code> となります。</p>
 <p><img src="img/1111_1111_1111_1111_1111_1111_1111_1111.png" alt="-1の符号付き32ビット整数での表現"></p>
 <!-- textlint-disable ja-technical-writing/sentence-length -->
-<p>符号付き32ビット整数で表現できる数値の範囲は、<code>1000_0000_0000_0000_0000_0000_0000_0000</code>から<code>0111_1111_1111_1111_1111_1111_1111_1111</code>からまでとなります。
+<p>符号付き32ビット整数で表現できる数値の範囲は、<code>1000_0000_0000_0000_0000_0000_0000_0000</code>から<code>0111_1111_1111_1111_1111_1111_1111_1111</code>までとなります。
 10進数に直すと<code>-(2^31)</code>（2の31乗の負の数）から <code>(2^31) - 1</code>（2の31乗から1引いた数）までとなります。
 32ビットを超える数値については、32ビットをはみ出るビットが最上位（一番左）から順番に捨てられます。</p>
 <!-- textlint-enable ja-technical-writing/sentence-length -->
@@ -1885,7 +1912,7 @@ XOR演算では、オペランドのビットが異なるなら<code>1</code>、
 <p>次のコードでは、<code>9</code>を2ビット分だけ左へシフトしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(     <span class="hljs-number">9</span> &lt;&lt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 36</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1111</span> &lt;&lt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 0b11_1100</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1001</span> &lt;&lt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 0b10_0100</span>
 </code></pre>
 <h3 id="right-shift"><a name="right-shift" class="plugin-anchor" href="#right-shift"><i class="fa fa-link" aria-hidden="true"></i></a>右シフト演算子（<code>&gt;&gt;</code>） </h3>
 <p>右シフト演算子は、数値である<code>num</code>を<code>bit</code>の数だけ右へシフトします。
@@ -1981,12 +2008,7 @@ num += <span class="hljs-number">10</span>; <span class="hljs-comment">// num = 
 </code></pre>
 <p>このような値が決まった時点でそれ以上評価しないことを<strong>短絡評価</strong>と呼びます。</p>
 <p>また、AND演算子は左辺を評価する際に、左辺を真偽値へと<a href="../implicit-coercion/" title="暗黙的な型変換について解説する章">暗黙的な型変換</a>をしてから判定します。
-真偽値への暗黙的な型変換ではどの値が<code>true</code>でどの値が<code>false</code>になるかは、次のルールによって決まります。</p>
-<ul>
-<li><strong>falsy</strong>な値は<code>false</code>になる</li>
-<li><strong>falsy</strong>でない値は<code>true</code>になる</li>
-</ul>
-<p><strong>falsy</strong>な値とは次の7種類の値のことを言います。</p>
+真偽値への暗黙的な型変換では、次に挙げる値は<code>false</code>へ変換されます。</p>
 <ul>
 <li><code>false</code></li>
 <li><code>undefined</code></li>
@@ -1996,7 +2018,9 @@ num += <span class="hljs-number">10</span>; <span class="hljs-comment">// num = 
 <li><code>NaN</code></li>
 <li><code>&quot;&quot;</code>（空文字列）</li>
 </ul>
-<p><code>true</code>へと変換される値の種類は多いため、<code>false</code>へと変換されない値は<code>true</code>となることは覚えておくとよいです。
+<p>暗黙的な型変換によって<code>false</code>に変換されるこれらの値をまとめて<strong>falsy</strong>な値と呼びます。
+falsyではない値は、<code>true</code>へと変換されます。
+<code>true</code>へと変換される値の種類は多いため、<code>false</code>へと変換されない値は<code>true</code>となることは覚えておくとよいです。
 このオペランドを真偽値に変換してから評価するのはAND、OR、NOT演算子で共通の動作です。</p>
 <p>次のように、AND演算子（<code>&amp;&amp;</code>）は左辺を真偽値へと変換した結果が<code>true</code>の場合に、右辺の評価結果を返します。
 つまり、左辺がfalsyの場合は、右辺は評価されません。</p>
@@ -2046,7 +2070,7 @@ AND演算子やOR演算子が3つ4つ連続すると複雑で読みにくいコ�
 <span class="hljs-comment">// 左辺がfalseなので、右辺は評価される</span>
 <span class="hljs-literal">false</span> || <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;このコンソールログは実行されます&quot;</span>);
 </code></pre>
-<p>また、OR演算子は左辺を評価する際に、左辺を真偽値へと暗黙的な型変換します。
+<p>また、OR演算子は左辺を評価する際に、左辺を真偽値へと暗黙的な型変換をします。
 次のように、OR演算子は左辺がfalsyの場合には右辺の値を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺がfalsyなので、右辺の値が返される</span>
@@ -2113,7 +2137,7 @@ falsyである値は<code>true</code>へ変換され、falsyではない値は<c
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;文字列&quot;</span> ?? <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
 </code></pre>
 <p>Nullish coalescing演算子(<code>??</code>)とOR演算子（<code>||</code>）は、値のデフォルト値を指定する場合によく利用されています。
-OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合が知られています。</p>
+OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合があります。</p>
 <p>次のコードは、<code>inputValue</code>が未定義だった場合に、<code>value</code>に対するデフォルト値をOR演算子（<code>||</code>）で指定しています。
 <code>inputValue</code>が未定義(<code>undefined</code>)の場合は、意図したようにOR演算子（<code>||</code>）の右辺で指定した<code>42</code>が入ります。
 しかし、<code>inputValue</code>が<code>0</code>という値であった場合は、<code>0</code>はfalsyであるため<code>value</code>には右辺の<code>42</code>が入ります。
@@ -2142,8 +2166,8 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
 <!-- doctest:disable -->
 <pre><code class="lang-js">条件式 ? Trueのとき処理する式 : Falseのとき処理する式;
 </code></pre>
-<p>if文との違いは、条件演算子は式として書くことができるため値を返します。
-次のように、<code>条件式</code>の評価結果により<code>&quot;A&quot;</code> または <code>&quot;B&quot;</code> どちらかを返します。</p>
+<p>if文との違いは、条件演算子は式として書くことができるため値を返すという点です。
+たとえば、次のように<code>条件式</code>の評価結果により<code>&quot;A&quot;</code> または <code>&quot;B&quot;</code> どちらかを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> valueA = <span class="hljs-literal">true</span> ? <span class="hljs-string">&quot;A&quot;</span> : <span class="hljs-string">&quot;B&quot;</span>;
 <span class="hljs-built_in">console</span>.log(valueA); <span class="hljs-comment">// =&gt; &quot;A&quot;</span>
@@ -2152,7 +2176,7 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
 </code></pre>
 <p>条件分岐による値を返せるため、条件によって変数の初期値が違う場合などに使われます。</p>
 <p>次の例では、<code>text</code>文字列に<code>prefix</code>となる文字列を先頭につける関数を書いています。
-<code>prefix</code>の第二引数を省略したり文字列ではないものが指定された場合に、デフォルトの<code>prefix</code>を使います。
+第二引数の<code>prefix</code>を省略したり文字列ではないものが指定された場合に、デフォルトの<code>prefix</code>を使います。
 第二引数が省略された場合には、<code>prefix</code>に<code>undefined</code>が入ります。</p>
 <p>条件演算子の評価結果は値を返すので、<code>const</code>を使って宣言と同時に代入できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2185,11 +2209,11 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> a = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">const</span> b = <span class="hljs-number">2</span>;
 <span class="hljs-keyword">const</span> c = <span class="hljs-number">3</span>;
-<span class="hljs-built_in">console</span>.log(a + b * c); <span class="hljs-comment">// 7</span>
+<span class="hljs-built_in">console</span>.log(a + b * c); <span class="hljs-comment">// =&gt; 7</span>
 <span class="hljs-built_in">console</span>.log((a + b) * c); <span class="hljs-comment">// =&gt; 9</span>
 </code></pre>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table" title="演算子の優先順位 - JavaScript | MDN" target="_blank">演算子の優先順位</a>はECMAScript仕様で定義されていますが、演算子の優先度をすべて覚えるのは難しいです。
-演算子の優先順位の中でグループ化演算子は優先される演算子となり、グループ化演算子を使って優先順位を明示できます。</p>
+演算子の優先順位の中でもグループ化演算子は優先順位が高く、グループ化演算子を使うことによって優先順位を明示できます。</p>
 <p>次のようなグループ化演算子を使わずに書いたコードを見てみましょう。
 <code>x</code>が<code>true</code>または、<code>y</code>かつ<code>z</code>が<code>true</code>であるときに処理されます。</p>
 <!-- doctest:disable -->
@@ -2242,13 +2266,13 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
 <p>この章では演算子について学びました。</p>
 <ul>
 <li>演算子はよく利用する演算処理を記号などで表現したもの</li>
-<li>四則演算から論理演算などさまざまな種類の演算子がある</li>
+<li>四則演算や論理演算などさまざまな種類の演算子がある</li>
 <li>演算子には優先順位が定義されており、グループ化演算子で明示できる</li>
 </ul>
 <blockquote id="fn_1">
 <sup>1</sup>. カンマ演算子を活用したテクニックとしてindirect callというものがあります。<a href="https://2ality.com/2014/01/eval.html" target="_blank">https://2ality.com/2014/01/eval.html</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
-
+</body></html>
                                 
                                 </section>
                             
@@ -2279,7 +2303,7 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2022-03-04T11:39:12.877Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2023-05-08T14:52:04.847Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -2337,15 +2361,15 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

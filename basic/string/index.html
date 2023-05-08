@@ -6,7 +6,7 @@
         <title>文字列 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/string/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,10 +1463,10 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="string"><a name="string" class="plugin-anchor" href="#string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列 </h1>
+                                <html><head></head><body><h1 id="string"><a name="string" class="plugin-anchor" href="#string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列 </h1>
 <p>この章ではJavaScriptにおける文字列について学んでいきます。
 まずは、文字列の作成方法や文字列の操作方法について見ていきます。
-そして、文字列を編集して自由な文字列を作れるようになることがこの章の目的です。</p>
+そして、文字列を編集して自由に文字列を作れるようになることがこの章の目的です。</p>
 <h2 id="create"><a name="create" class="plugin-anchor" href="#create"><i class="fa fa-link" aria-hidden="true"></i></a>文字列を作成する </h2>
 <p>文字列を作成するには、文字列リテラルを利用します。
 「<a href="../data-type/">データ型とリテラル</a>」の章でも紹介しましたが、文字列リテラルには<code>&quot;</code>（ダブルクォート）、<code>&apos;</code>（シングルクォート）、<code>`</code>（バッククォート）の3種類があります。</p>
@@ -1561,7 +1584,7 @@ const invalidString = &quot;1行目
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;¯\\_(ツ)_/¯&quot;</span>);
 <span class="hljs-comment">//　¯\_(ツ)_/¯ と表示される</span>
 </code></pre>
-<!-- Note: https://tc39.github.io/ecma262/#prod-NonEscapeCharacter
+<!-- Note: https://tc39.es/ecma262/#prod-NonEscapeCharacter
 
 - 指定外の組み合わせもNonEscapeCharacterとして扱われ構文的には無害
 - 単純に \ がないように使われる。
@@ -1820,7 +1843,7 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 </code></pre>
 <p>また、<code>===</code>などの比較演算子だけではなく、
 <code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>など大小の関係演算子で文字列同士の比較もできます。</p>
-<p>これらの関係演算子も、文字列の要素であるCode Unitの同士を先頭から順番に比較します。
+<p>これらの関係演算子も、文字列の要素であるCode Unit同士を先頭から順番に比較します。
 文字列からCode Unitの数値を取得するには、Stringの<code>charCodeAt</code>メソッドを利用できます。</p>
 <p>次のコードでは、<code>ABC</code>と<code>ABD</code>を比較した場合にどちらが大きい（Code Unitの値が大きい）かを比較しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1835,18 +1858,19 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <p>このように、関係演算子での文字列比較はCode Unit同士を比較しています。
 この結果を予測することは難しく、また直感的ではない結果が生まれることも多いです。
 文字の順番は国や言語によっても異なるため、国際化（Internationalization）に関する知識も必要です。</p>
-<p>JavaScriptにおいても、<a href="https://www.ecma-international.org/publications/standards/Ecma-402.htm" title="Standard ECMA-402" target="_blank">ECMA-402</a>というECMAScriptと関連する別の仕様として国際化についての取り決めがされています。
+<p>JavaScriptにおいても、<a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-402/" title="Standard ECMA-402" target="_blank">ECMA-402</a>というECMAScriptと関連する別の仕様として国際化についての取り決めがされています。
 この国際化に関するAPIを定義した<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl" target="_blank">Intl</a>というビルトインオブジェクトもありますが、このAPIについての詳細は省略します。</p>
 <h2 id="slice"><a name="slice" class="plugin-anchor" href="#slice"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の一部を取得 </h2>
 <p>文字列からその一部を取り出したい場合には、Stringの<code>slice</code>メソッドや<code>substring</code>メソッドが利用できます。</p>
 <p><code>slice</code>メソッドについては、すでに配列で学んでいますが、基本的な動作は文字列でも同様です。
 まずは<code>slice</code>メソッドについて見ていきます。</p>
 <!-- textlint-disable ja-technical-writing/max-ten -->
-<p>Stringの<code>slice</code>メソッドは、第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出した新しい文字列を返します。
-第二引数は省略でき、省略した場合は文字列の末尾が終了位置となります。</p>
+<p>Stringの<code>slice</code>メソッドは、第一引数の開始位置から第二引数の終了位置（終了位置の要素は含まない）までの範囲を取り出した新しい文字列を返します。
+第二引数は省略でき、省略した場合は文字列の末尾まで含んだ新しい文字列を返します。</p>
 <!-- textlint-enable ja-technical-writing/max-ten -->
 <p>位置にマイナスの値を指定した場合は文字列の末尾から数えた位置となります。
 また、第一引数の位置が第二引数の位置より大きい場合、常に空の文字列を返します。</p>
+<p>そのため、メソッドの引数の扱い方は<a href="../array/#slice">配列の<code>slice</code>メソッド</a>と同様です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABCDE&quot;</span>;
 <span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
@@ -1938,9 +1962,9 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <p>「文字列」に「検索文字列」が含まれているかを検索する方法がいくつか用意されています。
 次の3つのメソッドはES2015で導入されました。</p>
 <ul>
-<li><code>String#startsWith(検索文字列)</code><sup>[ES2015]</sup>: 検索文字列が先頭にあるかの真偽値を返す</li>
-<li><code>String#endsWith(検索文字列)</code><sup>[ES2015]</sup>: 検索文字列が末尾にあるかの真偽値を返す</li>
-<li><code>String#includes(検索文字列)</code><sup>[ES2015]</sup>: 検索文字列を含むかの真偽値を返す</li>
+<li><code>String.prototype.startsWith(検索文字列)</code><sup>[ES2015]</sup>: 検索文字列が先頭にあるかの真偽値を返す</li>
+<li><code>String.prototype.endsWith(検索文字列)</code><sup>[ES2015]</sup>: 検索文字列が末尾にあるかの真偽値を返す</li>
+<li><code>String.prototype.includes(検索文字列)</code><sup>[ES2015]</sup>: 検索文字列を含むかの真偽値を返す</li>
 </ul>
 <p>具体的な例をいくつか見てみましょう。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2041,8 +2065,8 @@ main();
 <p>Stringの<code>indexOf</code>メソッドの正規表現版ともいえるStringの<code>search</code>メソッドがあります。
 <code>search</code>メソッドは正規表現のパターンにマッチした箇所のインデックスを返し、マッチする文字列がない場合は<code>-1</code>を返します。</p>
 <ul>
-<li><code>String#indexOf(検索文字列)</code>: 指定された文字列にマッチした箇所のインデックスを返す</li>
-<li><code>String#search(/パターン/)</code>: 指定された正規表現のパターンにマッチした箇所のインデックスを返す</li>
+<li><code>String.prototype.indexOf(検索文字列)</code>: 指定された文字列にマッチした箇所のインデックスを返す</li>
+<li><code>String.prototype.search(/パターン/)</code>: 指定された正規表現のパターンにマッチした箇所のインデックスを返す</li>
 </ul>
 <p>次のコードでは、数字が3つ連続しているかを検索し、該当した箇所のインデックスを返しています。
 <code>\d</code>は、1文字の数字（<code>0</code>から<code>9</code>）にマッチする特殊文字です。</p>
@@ -2117,9 +2141,9 @@ str.slice(index, index + マッチした文字列の長さ); <span class="hljs-c
 <li>正規表現の<code>g</code>フラグがある場合は、マッチしたすべての結果を含んだただの配列を返す</li>
 </ul>
 <!--
-RegExp#match globalがtrueの場合はプロパティがないただの配列を返す
+RegExp.prototype.match globalがtrueの場合はプロパティがないただの配列を返す
 https://tc39.es/ecma262/#sec-regexp.prototype-@@match
-RegExp#match globalがfalseの場合はString#execと同じ
+RegExp.prototype.match globalがfalseの場合はString.prototype.execと同じ
  -->
 <p>ES2020では、正規表現の<code>g</code>フラグを使った繰り返しマッチする場合においても、それぞれマッチした文字列ごとの情報を得るためのStringの<code>matchAll</code>が追加されています。
 <code>matchAll</code>メソッドは、マッチした結果をIteratorで返します。</p>
@@ -2183,7 +2207,7 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <span class="hljs-comment">// match: &quot;ES2016&quot;, capture1: 2016, index: 7, input: &quot;ES2015、ES2016、ES2017&quot;</span>
 <span class="hljs-comment">// match: &quot;ES2017&quot;, capture1: 2017, index: 14, input: &quot;ES2015、ES2016、ES2017&quot;</span>
 </code></pre>
-<h4 id="regexp-exec"><a name="regexp-exec" class="plugin-anchor" href="#regexp-exec"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] RegExp#execでのString#matchAll </h4>
+<h4 id="regexp-exec"><a name="regexp-exec" class="plugin-anchor" href="#regexp-exec"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] RegExp.prototype.execでのString.prototype.matchAll </h4>
 <p>Stringの<code>matchAll</code>メソッドは、ES2020で導入されたメソッドです。
 それまでは、RegExpの<code>exec</code>メソッドというStringの<code>match</code>メソッドによく似た挙動をするメソッドを利用して、Stringの<code>matchAll</code>メソッド相当の表現を実装していました。</p>
 <p>RegExpの<code>exec</code>メソッドは、引数に文字列を受け取るメソッドです。</p>
@@ -2234,7 +2258,7 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <li>正規表現の<code>g</code>フラグがある場合は、マッチした文字列を含んだ特殊な配列を返し、マッチした末尾のインデックスを正規表現オブジェクトの<code>lastIndex</code>プロパティに記録する</li>
 </ul>
 <p>この正規表現の<code>g</code>フラグと<code>exec</code>メソッドで検索した場合に、<code>lastIndex</code>プロパティが検索ごとに更新される仕組みを利用して、マッチするすべての結果を取得できます。</p>
-<p>次のコードでは、RegExpの<code>exec</code>メソッド使いアルファベットにマッチした結果を<code>matches</code>に保持しています。
+<p>次のコードでは、RegExpの<code>exec</code>メソッドを使い、アルファベットにマッチした結果を<code>matches</code>に保持しています。
 <code>g</code>フラグがある場合の<code>exec</code>メソッドでは最後にマッチした位置が記録されているため、<code>while</code>文で反復処理して続きから検索しています。
 また、<code>exec</code>メソッドはマッチしなければ<code>null</code>を返すため、マッチするものがなくなればwhile文から自動的に脱出します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2250,7 +2274,7 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <span class="hljs-comment">// match: DE, index: 8, lastIndex: 10</span>
 </code></pre>
 <p>このようにRegExpの<code>exec</code>メソッドと正規表現の<code>g</code>フラグを使い、Stringの<code>matchAll</code>メソッド相当の反復処理を実装していました。
-RegExpの<code>exec</code>はIteratorオブジェクトという反復処理のためオブジェクトが導入される以前からあるメソッドです。</p>
+RegExpの<code>exec</code>はIteratorオブジェクトという反復処理のためのオブジェクトが導入される以前からあるメソッドです。</p>
 <p>Stringの<code>matchAll</code>がIteratorを扱うわかりやすい反復処理に比べて、RegExpの<code>exec</code>メソッドは<code>while</code>文などで手動で反復処理を書く必要があるため直感的ではありません。
 そのため、Stringの<code>matchAll</code>メソッドが利用できる場合に、RegExpの<code>exec</code>メソッドを利用する必要はありません。</p>
 <h4 id="test-by-regexp"><a name="test-by-regexp" class="plugin-anchor" href="#test-by-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>真偽値を取得 </h4>
@@ -2396,7 +2420,7 @@ Stringの<code>replaceAll</code>メソッドでは、正規表現ではなく文
 </code></pre>
 <h2 id="built"><a name="built" class="plugin-anchor" href="#built"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の組み立て </h2>
 <p>最後に文字列の組み立てについて見ていきましょう。
-最初に述べたようにこの章の目的は、「自由な文字列を作れるようになること」です。</p>
+最初に述べたようにこの章の目的は、「自由に文字列を作れるようになること」です。</p>
 <p>文字列を単純に結合したり置換することで新しい文字列を作れることがわかりました。
 一方、構造的な文字列の場合は単純に結合するだけでは意味が異なってしまうことがあります。</p>
 <p>ここでの構造的な文字列とは、URL文字列やファイルパス文字列といった文字列中にコンテキストを持っているものを指します。
@@ -2489,10 +2513,11 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
 <p>どちらも同じ関数ですが、<code>関数`テンプレート` </code>という書式で呼び出すと渡される引数が特殊な形になります。
 そのため、タグつきテンプレートで利用する関数のことを<strong>タグ関数</strong>（Tag function）と呼び分けることにします。</p>
 <p>まずは引数をどう扱うかを見ていくために、タグつきテンプレートの内容をそのまま結合して返す<code>stringRaw</code>というタグ関数を実装してみます。
-Arrayの<code>reduce</code>メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます。</p>
+Arrayの<code>reduce</code>メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます（<a href="../array/#array-reduce"><code>reduce</code>メソッド</a>については「<a href="../array/">配列</a>」の章を参照）。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// テンプレートを順番どおりに結合した文字列を返すタグ関数</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringRaw</span>(<span class="hljs-params">strings, ...values</span>) </span>{
+    <span class="hljs-comment">// 配列から文字列を返すためにreduceメソッドを利用する</span>
     <span class="hljs-comment">// resultの初期値はstrings[0]の値となる</span>
     <span class="hljs-keyword">return</span> strings.reduce(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
         <span class="hljs-built_in">console</span>.log([result, values[i - <span class="hljs-number">1</span>], str]);
@@ -2533,13 +2558,13 @@ Arrayの<code>reduce</code>メソッドを使うことで、テンプレート�
 文字列処理するStringメソッドにはさまざまなものがあり、正規表現と組み合わせて使うものも含まれます。</p>
 <p>正規表現は、正規表現のみで1冊の本が作れるようなJavaScript言語内にある別言語です。
 詳細は<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions" title="正規表現 - JavaScript | MDN" target="_blank">MDNの正規表現ドキュメント</a>なども参照してください。</p>
-<p>文字列は一見すると単純に見えますが、文字列にはURLやパスといったコンテキストを持つ文字列もあります。
+<p>文字列は一見すると単純に見えますが、URLやパスといったコンテキストを持つものもあります。
 それらの文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
 また、タグつきテンプレートリテラルを利用することで、テンプレート中の変数を自動でエスケープするといった処理を実現できます。</p>
 <blockquote id="fn_1">
 <sup>1</sup>. Unicodeのカタカナの一覧 <a href="https://unicode-table.com/jp/#katakana" target="_blank">https://unicode-table.com/jp/#katakana</a> から取り出したテーブルです。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
-
+</body></html>
                                 
                                 </section>
                             
@@ -2570,7 +2595,7 @@ Arrayの<code>reduce</code>メソッドを使うことで、テンプレート�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2022-03-04T11:39:12.881Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2023-05-08T14:52:04.855Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -2628,15 +2653,15 @@ Arrayの<code>reduce</code>メソッドを使うことで、テンプレート�
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

@@ -1,6 +1,6 @@
-const program = require("commander");
-const fs = require("fs");
-const marked = require("marked");
+import { program } from "commander";
+import * as fs from "node:fs/promises";
+import { marked } from "marked";
 
 // gfmオプションを定義する
 program.option("--gfm", "GFMを有効にする");
@@ -15,15 +15,13 @@ const cliOptions = {
     gfm: options.gfm ?? false,
 };
 
-fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
-    if (err) {
-        console.error(err.message);
-        process.exit(1);
-        return;
-    }
+fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     const html = marked.parse(file, {
         // オプションの値を使用する
         gfm: cliOptions.gfm,
     });
     console.log(html);
+}).catch(err => {
+    console.error(err.message);
+    process.exit(1);
 });

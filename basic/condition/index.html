@@ -6,7 +6,7 @@
         <title>条件分岐 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/condition/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,7 +1463,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="conditional-branch"><a name="conditional-branch" class="plugin-anchor" href="#conditional-branch"><i class="fa fa-link" aria-hidden="true"></i></a>条件分岐 </h1>
+                                <html><head></head><body><h1 id="conditional-branch"><a name="conditional-branch" class="plugin-anchor" href="#conditional-branch"><i class="fa fa-link" aria-hidden="true"></i></a>条件分岐 </h1>
 <p>この章ではif文やswitch文を使った条件分岐について学んでいきます。
 条件分岐を使うことで、特定の条件を満たすかどうかで行う処理を変更できます。</p>
 <h2 id="if-statement"><a name="if-statement" class="plugin-anchor" href="#if-statement"><i class="fa fa-link" aria-hidden="true"></i></a>if文 </h2>
@@ -1458,7 +1481,7 @@
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
 }
 </code></pre>
-<p><code>実行する文</code>が1行のみの場合は、<code>{</code> と <code>}</code> のブロックを省略できます。
+<p><code>実行する文</code>が1つのみの場合は、<code>{</code> と <code>}</code> のブロックを省略できます。
 しかし、どこまでがif文かがわかりにくくなるため、常にブロックで囲むことを推奨します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>)
@@ -1475,7 +1498,7 @@
 <p>if文の<code>条件式</code>には<code>true</code>または<code>false</code>といった真偽値以外の値も指定できます。
 真偽値以外の値の場合、その値を暗黙的に真偽値へ変換してから、条件式として判定します。</p>
 <p>真偽値へ変換すると<code>true</code>となる値の種類は多いため、逆に変換した結果が<code>false</code>となる値を覚えるのが簡単です。
-次の値は真偽値へと変換すると<code>false</code>となるため、これらの値は<strong>falsy</strong>と呼ばれます（「<a href="../implicit-coercion/">暗黙的な型変換</a>」の章を参照）。</p>
+次の値は真偽値へと変換すると<code>false</code>となるため、これらは<strong>falsy</strong>な値と呼ばれます（「<a href="../implicit-coercion/">暗黙的な型変換</a>」の章を参照）。</p>
 <ul>
 <li><code>false</code></li>
 <li><code>undefined</code></li>
@@ -1485,7 +1508,7 @@
 <li><code>NaN</code></li>
 <li><code>&quot;&quot;</code>（空文字列）</li>
 </ul>
-<p>これ以外の値は真偽値に変換すると<code>true</code>になります。
+<p>falsyではない値は、<code>true</code>へと変換されます。
 そのため、<code>&quot;文字列&quot;</code>や0以外の数値などを<code>条件式</code>に指定した場合は、<code>true</code>へと変換してから条件式として判定します。</p>
 <p>次のコードは、条件式が<code>true</code>へと変換されるため、if文の中身が実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1528,9 +1551,9 @@
 <p>複数の条件分岐を書く場合は、if文に続けてelse if文を使うことで書けます。
 たとえば、次の3つの条件分岐するプログラムを考えます。</p>
 <ul>
-<li><code>version</code> が &quot;ES5&quot; ならば &quot;ECMAScript 5&quot; と出力</li>
-<li><code>version</code> が &quot;ES6&quot; ならば &quot;ECMAScript 2015&quot; と出力</li>
-<li><code>version</code> が &quot;ES7&quot; ならば &quot;ECMAScript 2016&quot; と出力</li>
+<li><code>version</code> が <code>&quot;ES5&quot;</code> ならば <code>&quot;ECMAScript 5&quot;</code> と出力</li>
+<li><code>version</code> が <code>&quot;ES6&quot;</code> ならば <code>&quot;ECMAScript 2015&quot;</code> と出力</li>
+<li><code>version</code> が <code>&quot;ES7&quot;</code> ならば <code>&quot;ECMAScript 2016&quot;</code> と出力</li>
 </ul>
 <p>次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
 変数<code>version</code>の値が<code>&quot;ES6&quot;</code>であるため、コンソールには<code>&quot;ECMAScript 2015&quot;</code>が出力されます。</p>
@@ -1709,7 +1732,7 @@
 そのため、case節とbreak文が多用されているswitch文が出てきた場合、
 別の方法で書けないかを考えるべきサインとなります。</p>
 <p>switch文はif文の代用として使うのではなく、次のように関数と組み合わせて条件に対する値を返すパターンとして使うことが多いです。
-関数については「<a href="../function-declaration/">関数と宣言</a>」の章で紹介します。</p>
+関数については「<a href="../function-declaration/">関数と宣言</a>」の章を参照してください。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getECMAScriptName</span>(<span class="hljs-params">version</span>) </span>{
     <span class="hljs-keyword">switch</span> (version) {
@@ -1733,7 +1756,7 @@ getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class
 <li>条件式に指定した値は真偽値へと変換してから判定される</li>
 <li>真偽値に変換すると<code>false</code>となる値をfalsyと呼ぶ</li>
 <li>switch文とcase節、default節を組み合わせて条件分岐した処理を扱える</li>
-<li>case節でbreak文しない場合は引き続きcase節が実行される</li>
+<li>case節でbreak文を省略した場合は、後ろに続くcase節が実行される</li>
 </ul>
 <p>条件分岐にはif文やswitch文を利用します。
 複雑な条件を定義する場合には、if文のネストが深くなりやすいです。
@@ -1747,7 +1770,7 @@ getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class
 - [switch - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch)
 - [制御フローとエラー処理 - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
 -->
-
+</body></html>
                                 
                                 </section>
                             
@@ -1778,7 +1801,7 @@ getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。","title":"条件分岐","level":"1.3.10","depth":2,"next":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"previous":{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/condition/README.md","mtime":"2022-03-04T11:39:12.869Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。","title":"条件分岐","level":"1.3.10","depth":2,"next":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"previous":{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/condition/README.md","mtime":"2023-05-08T14:52:04.843Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1836,15 +1859,15 @@ getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

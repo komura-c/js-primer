@@ -6,7 +6,7 @@
         <title>アプリの構成要素 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="これから実装するTodoアプリの機能と構成要素を見ていきます。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/use-case/todoapp/app-structure/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../../../basic/async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,7 +1463,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="app-structure"><a name="app-structure" class="plugin-anchor" href="#app-structure"><i class="fa fa-link" aria-hidden="true"></i></a>アプリの構成要素 </h1>
+                                <html><head></head><body><h1 id="app-structure"><a name="app-structure" class="plugin-anchor" href="#app-structure"><i class="fa fa-link" aria-hidden="true"></i></a>アプリの構成要素 </h1>
 <p>HTMLとJavaScriptの<a href="../entrypoint/">エントリーポイント</a>を作成しましたが、次はこのTodoアプリの構成要素を改めて見ていきましょう。</p>
 <p>Todoアプリには、次のような機能を実装していきます。
 Todoアイテムの追加、更新、削除、現在の状態の表示など複数の機能を持っています。</p>
@@ -1532,7 +1555,7 @@ CSSに定義したスタイルを正しく適用するには、<code>class</code
 また、1つのページの中で同じクラス名を複数の要素に対して設定できます。
 HTMLの<code>class</code>属性はJavaScriptの<code>class</code>構文とは無関係なことには注意が必要です。</p>
 <p>今回の<code>todoapp</code>というクラス名を持つ要素を、CSSから<code>.todoapp</code>というCSSセレクタで指定できます。
-<a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors" target="_blank">CSSセレクタ</a>とはクラス名などを使って、HTML要素を指定できる記法です。
+<a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Selectors" target="_blank">CSSセレクタ</a>とはクラス名などを使って、HTML要素を指定できる記法です。
 特定の「クラス名」を持つ要素の場合は<code>.クラス名</code>（クラス名の前にドット）で選択できます。</p>
 <p>次のCSSコードでは、<code>todoapp</code>というクラス名を持つ要素の<code>background</code>プロパティの値を<code>black</code>にしています。
 つまり<code>todoapp</code>クラス名の要素の背景色を黒色にするという意味になります。</p>
@@ -1581,7 +1604,8 @@ HTMLの<code>class</code>属性はJavaScriptの<code>class</code>構文とは無
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/app-structure/todo-html/" target="_blank">https://jsprimer.net/use-case/todoapp/app-structure/todo-html/</a></li>
 </ul>
-
+<!-- sandpack:{"files":{"/src/App.js":{"code":"console.log(\"App.js: loaded\");\nexport class App {\n    constructor() {\n        console.log(\"App initialized\");\n    }\n}\n"},"/index.js":{"code":"import { App } from \"./src/App.js\";\nconst app = new App();\n"},"/src/index.js":{"code":"/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */","hidden":true},"/index.html":{"active":true,"code":"<!DOCTYPE html>\n<html lang=\"ja\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <title>Todo App</title>\n    \\u003c\\u0021\\u002d\\u002d 1. CSSファイルを読み込み \\u002d\\u002d\\u003e\n    <link\n      href=\"https://jsprimer.net/use-case/todoapp/final/final/index.css\"\n      rel=\"stylesheet\"\n    />\n  </head>\n  <body>\n    \\u003c\\u0021\\u002d\\u002d 2. class属性をCSSのために指定 \\u002d\\u002d\\u003e\n    <div class=\"todoapp\">\n      \\u003c\\u0021\\u002d\\u002d 3. id属性をJavaScriptのために指定 \\u002d\\u002d\\u003e\n      <form id=\"js-form\">\n        <input\n          id=\"js-form-input\"\n          class=\"new-todo\"\n          type=\"text\"\n          placeholder=\"What need to be done?\"\n          autocomplete=\"off\"\n        />\n      </form>\n      \\u003c\\u0021\\u002d\\u002d 4. TodoアプリのメインとなるTodoリスト \\u002d\\u002d\\u003e\n      <div id=\"js-todo-list\" class=\"todo-list\">\n        \\u003c\\u0021\\u002d\\u002d 動的に更新されるTodoリスト \\u002d\\u002d\\u003e\n      </div>\n      <footer class=\"footer\">\n        \\u003c\\u0021\\u002d\\u002d 5. Todoアイテム数の表示 \\u002d\\u002d\\u003e\n        <span id=\"js-todo-count\">Todoアイテム数: 0</span>\n      </footer>\n    </div>\n    <script src=\"./index.js\" type=\"module\"></script>\n  </body>\n</html>\n"}},"entry":"/index.js","main":"/index.js","environment":"static","template":"vanilla","options":{"showLineNumbers":true,"editorHeight":550,"showConsole":true,"showConsoleButton":true,"externalResources":["https://jsprimer.net/use-case/todoapp/final/final/index.css"]},"honkitSettings":{"isOpen":true,"hideExitButton":true}} -->
+</body></html>
                                 
                                 </section>
                             
@@ -1612,7 +1636,7 @@ HTMLの<code>class</code>属性はJavaScriptの<code>class</code>構文とは無
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"これから実装するTodoアプリの機能と構成要素を見ていきます。","title":"アプリの構成要素","level":"1.4.4.2","depth":3,"next":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/app-structure/README.md","mtime":"2022-03-04T11:39:12.897Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"これから実装するTodoアプリの機能と構成要素を見ていきます。","title":"アプリの構成要素","level":"1.4.4.2","depth":3,"next":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/app-structure/README.md","mtime":"2023-05-08T14:52:04.867Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1670,15 +1694,15 @@ HTMLの<code>class</code>属性はJavaScriptの<code>class</code>構文とは無
         
     
         
-        <script src="../../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         

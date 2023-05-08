@@ -6,7 +6,7 @@
         <title>データ型とリテラル · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 4.0.4">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -69,6 +69,15 @@
 
     <link rel="canonical" href="https://jsprimer.net/basic/data-type/">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -109,12 +118,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +160,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -557,7 +580,7 @@
                 <a href="../async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1407,7 +1430,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -1440,7 +1463,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="data-type-and-literal"><a name="data-type-and-literal" class="plugin-anchor" href="#data-type-and-literal"><i class="fa fa-link" aria-hidden="true"></i></a>データ型とリテラル </h1>
+                                <html><head></head><body><h1 id="data-type-and-literal"><a name="data-type-and-literal" class="plugin-anchor" href="#data-type-and-literal"><i class="fa fa-link" aria-hidden="true"></i></a>データ型とリテラル </h1>
 <h2 id="data-type"><a name="data-type" class="plugin-anchor" href="#data-type"><i class="fa fa-link" aria-hidden="true"></i></a>データ型 </h2>
 <p>JavaScriptは動的型付け言語に分類される言語であるため、静的型付け言語のような<strong>変数の型</strong>はありません。
 しかし、文字列、数値、真偽値といった<strong>値の型</strong>は存在します。
@@ -1467,7 +1490,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 </li>
 <li>オブジェクト（複合型）<ul>
 <li>プリミティブ型以外のデータ</li>
-<li>オブジェクト、配列、関数、正規表現、Dateなど</li>
+<li>オブジェクト、配列、関数、クラス、正規表現、Dateなど</li>
 </ul>
 </li>
 </ul>
@@ -1485,12 +1508,14 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> { <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span> }); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{}); <span class="hljs-comment">// =&gt; &quot;function&quot;</span>
 </code></pre>
-<p>残念ながら<code>typeof null</code>が<code>&quot;object&quot;</code>となるのは、歴史的経緯のある仕様のバグ<sup><a href="#fn_1" id="reffn_1">1</a></sup>です。
-他のプリミティブ型の値については、<code>typeof</code>演算子でそれぞれのデータ型を調べることができます。</p>
-<p>一方で、配列とオブジェクトがどちらも<code>&quot;object&quot;</code>という判定結果になります。
-このように、<code>typeof</code>演算子ではすべてのオブジェクトの種類を判定することはできません。</p>
-<p>基本的に<code>typeof</code>演算子は、プリミティブ型またはオブジェクトかを判別するものです。
-オブジェクトの詳細な種類を判定できないことは、覚えておくとよいでしょう。
+<p>プリミティブ型の値は、それぞれ<code>typeof</code>演算子の評価結果として、その値のデータ型を返します。
+一方で、オブジェクトに分類される値は<code>&quot;object&quot;</code>となります。</p>
+<p>配列(<code>[]</code>)とオブジェクト(<code>{}</code>)は、どちらも<code>&quot;object&quot;</code>という判定結果になります。
+そのため、<code>typeof</code>演算子ではオブジェクトの詳細な種類を正しく判定することはできません。
+ただし、関数はオブジェクトの中でも特別扱いされているため、<code>typeof</code>演算子の評価結果は<code>&quot;function&quot;</code>となります。
+また、<code>typeof null</code>が<code>&quot;object&quot;</code>となるのは、歴史的経緯のある仕様のバグ<sup><a href="#fn_1" id="reffn_1">1</a></sup>です。</p>
+<p>このことからもわかるように<code>typeof</code>演算子は、プリミティブ型またはオブジェクトかを判別するものです。
+<code>typeof</code>演算子では、オブジェクトの詳細な種類を判定できないことは、覚えておくとよいでしょう。
 各オブジェクトの判定方法については、それぞれのオブジェクトの章で見ていきます。</p>
 <h2 id="literal"><a name="literal" class="plugin-anchor" href="#literal"><i class="fa fa-link" aria-hidden="true"></i></a>リテラル </h2>
 <p>プリミティブ型の値や一部のオブジェクトは、<strong>リテラル</strong>を使うことで簡単に定義できるようになっています。</p>
@@ -1501,11 +1526,12 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;こんにちは&quot;</span>;
 </code></pre>
 <p>リテラル表現がない場合は、その値を作る関数に引数を渡して作成する形になります。
-そのような冗長な表現を避ける方法として、よく利用される主要な値にはリテラルが用意されています。</p>
-<p>次の4つのプリミティブ型は、それぞれリテラル表現を持っています。</p>
+そのような冗長な表現を避ける方法として、よく利用される主要なデータ型にはリテラルが用意されています。</p>
+<p>次の5つのプリミティブ型は、それぞれリテラル表現を持っています。</p>
 <ul>
 <li>真偽値</li>
 <li>数値</li>
+<li>BigInt</li>
 <li>文字列</li>
 <li>null</li>
 </ul>
@@ -1644,7 +1670,8 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <pre><code class="lang-js"><span class="hljs-number">2e8</span>; <span class="hljs-comment">// =&gt; 200000000</span>
 </code></pre>
 <h3 id="bigint-literal"><a name="bigint-literal" class="plugin-anchor" href="#bigint-literal"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2020] BigInt </h3>
-<p><code>1</code>や<code>3.14159</code>などの数値リテラルは<a href="https://ja.wikipedia.org/wiki/IEEE_754" target="_blank">IEEE 754</a>の倍精度浮動小数であるため、正確に扱える数値の最大値は<code>2^53-1</code>（2の53乗から1引いた値）です。
+<p>JavaScriptでは、<code>1</code>や<code>3.14159</code>などの数値リテラルは<a href="https://ja.wikipedia.org/wiki/IEEE_754" target="_blank">IEEE 754</a>で定義された倍精度浮動小数となります。
+倍精度浮動小数で正確に扱える数値の最大値は<code>2^53-1</code>（2の53乗から1引いた値である<code>9007199254740991</code>）です。
 この数値リテラルで安全に表せる最大の数値は<code>Number.MAX_SAFE_INTEGER</code>として定義されています。</p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>.MAX_SAFE_INTEGER); <span class="hljs-comment">// =&gt; 9007199254740991</span>
 </code></pre>
@@ -1766,7 +1793,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-keyword">var</span> <span class="hljs-literal">undefined</span> = <span class="hljs-string">&quot;独自の未定義値&quot;</span>; <span class="hljs-comment">// undefinedという名前の変数をエラーなく定義できる</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-literal">undefined</span> = <span class="hljs-string">&quot;独自の未定義値&quot;</span>; <span class="hljs-comment">// undefinedという名前の変数をエラーなく定義できる</span>
     <span class="hljs-built_in">console</span>.log(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; &quot;独自の未定義値&quot;</span>
 }
 fn();
@@ -1775,7 +1802,7 @@ fn();
 <p>これに対して<code>true</code>、<code>false</code>、<code>null</code>などはグローバル変数ではなくリテラルであるため、同じ名前の変数を定義することはできません。
 リテラルは変数名として利用できない予約語のようなものであるため、再定義しようとすると構文エラー（SyntaxError）となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// =&gt; SyntaxError</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// =&gt; SyntaxError</span>
 </code></pre>
 <p>ここでは、説明のために<code>undefined</code>というローカル変数を宣言しましたが、<code>undefined</code>の再定義は非推奨です。
 無用な混乱を生むだけなので避けるべきです。</p>
@@ -1787,7 +1814,7 @@ fn();
 </code></pre>
 <p>オブジェクトリテラルはオブジェクトの作成と同時に中身を定義できます。
 オブジェクトのキーと値を<code>:</code>で区切ったものを <code>{}</code> の中に書くことで作成と初期化が同時に行えます。</p>
-<p>次のコードで作成したオブジェクトは <code>key</code> というキー名と <code>value</code> という値を持つオブジェクトを作成しています。
+<p>次のコードで作成したオブジェクトは <code>key</code> というキー名と <code>&quot;value&quot;</code> という文字列の値を持つオブジェクトを作成しています。
 キー名には、文字列またはSymbolを指定し、値にはプリミティブ型の値からオブジェクトまで何でも入れることができます。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
     <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
@@ -1810,7 +1837,7 @@ fn();
 そのため、次のように識別子として利用できないプロパティ名はドット記法として書くことができません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-Js"><span class="hljs-comment">// プロパティ名は文字列の&quot;123&quot;</span>
-<span class="hljs-keyword">var</span> object = {
+<span class="hljs-keyword">const</span> object = {
     <span class="hljs-string">&quot;123&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
 };
 <span class="hljs-comment">// OK: ブラケット記法では、文字列として書くことができる</span>
@@ -1843,7 +1870,7 @@ object<span class="hljs-number">.123</span>
 <h3 id="regexp-literal"><a name="regexp-literal" class="plugin-anchor" href="#regexp-literal"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現リテラル </h3>
 <p>JavaScriptは正規表現をリテラルで書くことができます。
 正規表現リテラルは<code>/</code>（スラッシュ）と<code>/</code>（スラッシュ）で正規表現のパターン文字列を囲みます。
-正規表現のパターン内では、<code>+</code>や<code>\</code>（バックスラッシュ）からはじまる特殊文字が特別な意味を持ちます。</p>
+正規表現のパターン内では、<code>+</code>などの特定の記号や<code>\</code>（バックスラッシュ）からはじまる特殊文字が特別な意味を持ちます。</p>
 <p>次のコードでは、数字にマッチする特殊文字である<code>\d</code>を使い、1文字以上の数字にマッチする正規表現をリテラルで表現しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> numberRegExp = <span class="hljs-regexp">/\d+/</span>; <span class="hljs-comment">// 1文字以上の数字にマッチする正規表現</span>
@@ -1892,7 +1919,7 @@ object<span class="hljs-number">.123</span>
 <ul>
 <li>7種類のプリミティブ型とオブジェクトがある</li>
 <li>リテラルはデータ型の値を直接記述できる構文として定義されたもの</li>
-<li>プリミティブ型の真偽値、数値、文字列、nullはリテラル表現がある</li>
+<li>プリミティブ型の真偽値、数値、BigInt、文字列、nullはリテラル表現がある</li>
 <li>オブジェクト型のオブジェクト、配列、正規表現にはリテラル表現がある</li>
 <li>プリミティブ型のデータでもプロパティアクセスができる</li>
 </ul>
@@ -1909,7 +1936,7 @@ object<span class="hljs-number">.123</span>
 <blockquote id="fn_1">
 <sup>1</sup>. JavaScriptが最初にNetscapeで実装された際に<code>typeof null === &quot;object&quot;</code>となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。 詳しくは<a href="https://2ality.com/2013/10/typeof-null.html" target="_blank">https://2ality.com/2013/10/typeof-null.html</a>を参照。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
-
+</body></html>
                                 
                                 </section>
                             
@@ -1940,7 +1967,7 @@ object<span class="hljs-number">.123</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。","title":"データ型とリテラル","level":"1.3.5","depth":2,"next":{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},"previous":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/data-type/README.md","mtime":"2022-03-04T11:39:12.869Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-04T11:39:49.350Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。","title":"データ型とリテラル","level":"1.3.5","depth":2,"next":{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},"previous":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/data-type/README.md","mtime":"2023-05-08T14:52:04.843Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-05-08T14:52:26.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1998,15 +2025,15 @@ object<span class="hljs-number">.123</span>
         
     
         
-        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
         <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
         
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         
